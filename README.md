@@ -9,7 +9,7 @@ written permission of Colin Tickle ([colin.tickle@gmail.com](mailto:colin.tickle
 In addition to the modules contained herein, an additional folder needs creating in the `./app/code` folder of your
 Magento installation.
 
-The folder structure needs to be: `./app/code/lownto/dynamic_config`.
+The folder structure needs to be: `./app/code/lownto/dynamic_configuration`.
 
 Inside that folder, create a single file named `registration.php`.
 
