@@ -1,0 +1,21 @@
+{
+    "name": "lownto/module-lownto",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "MIT"
+    ],
+    "require": {
+        "magento/framework": ">=101.0.0",
+        "cmtickle/module-event-thing": "*"
+    },
+    "autoload": {
+        "files": [
+            "remote_config/registration.php"
+        ],
+        "psr-4": {
+            "Magento\\Framework\\": "framework/",
+            "Lownto\\RemoteConfig\\": "remote_config/"
+        }
+    }
+}

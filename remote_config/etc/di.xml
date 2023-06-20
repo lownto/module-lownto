@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright @cmtickle. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="\Magento\Setup\Module\Di\App\Task\Operation\RepositoryGenerator"
+                type="Lownto\RemoteConfig\Di\Operation\RepositoryGenerator"/>
+    <preference for="\Magento\Setup\Module\Di\App\Task\Operation\ApplicationCodeGenerator"
+                type="Lownto\RemoteConfig\Di\Operation\ApplicationCodeGenerator"/>
+    <preference for="\Magento\Setup\Module\Di\Code\Reader\ClassesScanner"
+                type="Lownto\RemoteConfig\Di\Code\Reader\ClassesScanner"/>
+
+    <preference for="Cmtickle\EventThing\Transport\TransportInterface"
+                type="Lownto\RemoteConfig\Transport\DynamicConfiguration"/>
+</config>
