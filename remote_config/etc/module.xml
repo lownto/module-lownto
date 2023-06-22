@@ -3,7 +3,6 @@
     <module name="Lownto_RemoteConfig">
         <sequence>
             <module name="Cmtickle_EventThing"/>
-            <module name="Lownto_DynamicConfiguration"/>
         </sequence>
     </module>
 </config>
