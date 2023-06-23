@@ -2,29 +2,33 @@
 
 namespace Lownto\RemoteConfig\Transport;
 
-use \Magento\Support\Model\Report\Group\Modules\Modules;
+use \Magento\Framework\Module\Manager as ModuleManager;
+use \Magento\Framework\Module\Dir as ModuleDir;
 
 class DynamicConfiguration implements \Cmtickle\EventThing\Transport\TransportInterface
 {
-    protected Modules $modules;
+    protected ModuleManager $moduleManager;
+    protected ModuleDir $moduleDir;
     protected \Magento\Framework\Serialize\Serializer\Json $serialize;
 
     public function __construct(
-        Modules $modules,
+        ModuleManager $moduleManager,
+        ModuleDir $moduleDir,
         \Magento\Framework\Serialize\Serializer\Json $serialize
     ) {
-        $this->modules = $modules;
+        $this->moduleManager = $moduleManager;
+        $this->moduleDir = $moduleDir;
         $this->serialize = $serialize;
     }
 
     protected function getRestUrl()
     {
-        if (!$this->modules->isModuleEnabled('Lownto_DynamicConfiguration')) {
+        if (!$this->moduleManager->isEnabled('Lownto_DynamicConfiguration')) {
             throw new \Exception('Dynamic Configuration module must be installed and enabled.');
         }
 
         return rtrim(
-            $this->modules->getModulePath('Lownto_DynamicConfiguration'),
+            $this->moduleDir->getDir('Lownto_DynamicConfiguration'),
             '/'
             ) . '/lownto';
     }
@@ -41,6 +45,6 @@ class DynamicConfiguration implements \Cmtickle\EventThing\Transport\TransportIn
         curl_setopt($curl, CURLOPT_POSTFIELDS, $this->serialize->serialize($data));
         $response = curl_exec($curl);
 
-        return $this->serialize->Unserialize($response ?: $data);
+        return $response ? $this->serialize->Unserialize($response) : $data;
     }
 }
