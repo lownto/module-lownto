@@ -4,7 +4,7 @@ namespace Lownto\RemoteConfig\Transport;
 
 use \Magento\Support\Model\Report\Group\Modules\Modules;
 
-class DynamicConfiguration extends \Cmtickle\EventThing\Transport\BaseTransport
+class DynamicConfiguration implements \Cmtickle\EventThing\Transport\TransportInterface
 {
     protected Modules $modules;
     protected \Magento\Framework\Serialize\Serializer\Json $serialize;
@@ -29,7 +29,7 @@ class DynamicConfiguration extends \Cmtickle\EventThing\Transport\BaseTransport
             ) . '/lownto';
     }
 
-    public function send(array $data):array
+    public function process(array $data):array
     {
         $curl = curl_init($this->getRestUrl());
         curl_setopt($curl, CURLOPT_HEADER, false);
