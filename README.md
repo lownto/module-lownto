@@ -34,8 +34,17 @@ The file must contain the following contents, modified to point at your Lownto N
 );
 ```
 
-That's it, the rest will come from NodeRED.
-
 ### NodeRED portion of install.
 
 Follow the instructions at : [lownto/node-red-lownto/README.md](https://github.com/lownto/node-red-lownto/blob/main/README.md)
+
+### Once NodeRED is configured...
+
+When you have followed the instructions for NodeRED, you'll need to enable the Magento modules as per the below commands:
+
+```bash
+bin/magento module:enable Cmtickle_EventThing Lownto_RemoteConfig Lownto_DynamicConfiguration
+bin/magento setup:upgrade
+```
+
+Once you've followed the above you should have NodeRED integrated to Magento via Lownto.
