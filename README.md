@@ -5,13 +5,25 @@
 This module and the code herein is proprietary. The code must not be edited or redistributed without the advance 
 written permission of Colin Tickle ([colin.tickle@gmail.com](mailto:colin.tickle@gmail.com)).
 
-## Usage
-In addition to the modules contained herein, an additional folder needs creating in the `./app/code` folder of your
-Magento installation.
+## Installation
 
-The folder structure needs to be: `./app/code/lownto/dynamic_configuration`.
+### This module (in Magento)
 
-Inside that folder, create a single file named `registration.php`.
+Run the following commands in your Magento root folder.
+
+```bash
+composer config repositories.lownto/module-lownto vcs git@github.com:lownto/module-lownto.git
+composer config repositories.cmtickle/module-event-thing vcs git@github.com:cmtickle/module-event-thing.git
+composer require lownto/module-lownto:dev-main cmtickle/module-event-thing:dev-main
+```
+
+Once the above completes, we need a module to specify how to connect to NodeRED. Create that module as below.
+
+```bash
+mkdir -p ./app/code/lownto/dynamic_configuration
+```
+
+Inside the folder you just created, create a single file named `registration.php`.
 
 The file must contain the following contents, modified to point at your Lownto NodeRED endpoint.
 ```php
@@ -21,3 +33,9 @@ The file must contain the following contents, modified to point at your Lownto N
     'http://eg-nodered:1880'
 );
 ```
+
+That's it, the rest will come from NodeRED.
+
+### NodeRED portion of install.
+
+Follow the instructions at : [lownto/node-red-lownto/README.md](https://github.com/lownto/node-red-lownto/blob/main/README.md)
